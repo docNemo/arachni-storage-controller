@@ -4,4 +4,4 @@ COPY arachni-controller-storage-api/target/arachni-controller-storage.jar arachn
 ENV JAVA_OPTS = ""
 
 EXPOSE 8080
-CMD ["sh", "-c", "java -jar arachni-controller-storage.jar"]
+CMD ["sh", "-c", "java -jar $JAVA_OPTS arachni-controller-storage.jar"]
