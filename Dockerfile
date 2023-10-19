@@ -1,5 +1,5 @@
 FROM openjdk:20-jdk-oraclelinux7
-COPY arachni-storage-controller-api/target/arachni-controller-storage.jar arachni-storage-controller.jar
+COPY arachni-storage-controller-api/target/arachni-storage-controller.jar arachni-storage-controller.jar
 
 ENV JAVA_OPTS = ""
 
