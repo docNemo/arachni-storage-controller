@@ -1,7 +1,7 @@
 FROM openjdk:20-jdk-oraclelinux7
-COPY arachni-controller-storage-api/target/arachni-controller-storage.jar arachni-controller-storage.jar
+COPY arachni-storage-controller-api/target/arachni-controller-storage.jar arachni-storage-controller.jar
 
 ENV JAVA_OPTS = ""
 
 EXPOSE 8080
-CMD ["sh", "-c", "java -jar $JAVA_OPTS arachni-controller-storage.jar"]
+CMD ["sh", "-c", "java -jar $JAVA_OPTS arachni-storage-controller.jar"]

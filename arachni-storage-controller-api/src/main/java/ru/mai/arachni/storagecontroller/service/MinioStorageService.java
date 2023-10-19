@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.service;
+package ru.mai.arachni.storagecontroller.service;
 
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
@@ -9,9 +9,9 @@ import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import ru.mai.arachni.controllerstorage.dto.response.UploadResponse;
-import ru.mai.arachni.controllerstorage.exception.ArachniControllerStorageError;
-import ru.mai.arachni.controllerstorage.exception.ArachniControllerStorageException;
+import ru.mai.arachni.storagecontroller.dto.response.UploadResponse;
+import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerError;
+import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -51,8 +51,8 @@ public class MinioStorageService implements StorageService {
             );
 
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            throw new ArachniControllerStorageException(
-                    ArachniControllerStorageError.UPLOAD_FAILED,
+            throw new ArachniStorageControllerException(
+                    ArachniStorageControllerError.UPLOAD_FAILED,
                     e.getMessage()
             );
         }
@@ -71,8 +71,8 @@ public class MinioStorageService implements StorageService {
         ) {
             return new String(stream.readAllBytes());
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            throw new ArachniControllerStorageException(
-                    ArachniControllerStorageError.DOWNLOAD_FAILED,
+            throw new ArachniStorageControllerException(
+                    ArachniStorageControllerError.DOWNLOAD_FAILED,
                     e.getMessage()
             );
         }
@@ -90,8 +90,8 @@ public class MinioStorageService implements StorageService {
                             .build()
             );
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            throw new ArachniControllerStorageException(
-                    ArachniControllerStorageError.DELETE_FAILED,
+            throw new ArachniStorageControllerException(
+                    ArachniStorageControllerError.DELETE_FAILED,
                     e.getMessage()
             );
         }

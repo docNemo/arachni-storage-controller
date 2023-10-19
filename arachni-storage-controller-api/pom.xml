@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>ru.mai.arachni</groupId>
-        <artifactId>arachni-controller-storage</artifactId>
+        <artifactId>arachni-storage-controller</artifactId>
         <version>0.1.0</version>
     </parent>
 
-    <artifactId>arachni-controller-storage-api</artifactId>
+    <artifactId>arachni-storage-controller-api</artifactId>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>

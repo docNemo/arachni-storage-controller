@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.exception;
+package ru.mai.arachni.storagecontroller.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @RequiredArgsConstructor
 @Getter
-public enum ArachniControllerStorageError {
+public enum ArachniStorageControllerError {
     UNKNOWN_ERROR(
             "Неизвестная ошибка",
             HttpStatus.BAD_REQUEST

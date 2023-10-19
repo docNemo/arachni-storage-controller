@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.dto.response;
+package ru.mai.arachni.storagecontroller.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UploadResponse {
     private String objectName;
-    private String version;
+    private String versionId;
 }

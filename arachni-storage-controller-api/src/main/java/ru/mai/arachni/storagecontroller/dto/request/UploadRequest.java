@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.dto.request;
+package ru.mai.arachni.storagecontroller.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

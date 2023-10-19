@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage;
+package ru.mai.arachni.storagecontroller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

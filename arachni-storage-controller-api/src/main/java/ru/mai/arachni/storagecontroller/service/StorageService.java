@@ -1,6 +1,6 @@
-package ru.mai.arachni.controllerstorage.service;
+package ru.mai.arachni.storagecontroller.service;
 
-import ru.mai.arachni.controllerstorage.dto.response.UploadResponse;
+import ru.mai.arachni.storagecontroller.dto.response.UploadResponse;
 
 public interface StorageService {
 

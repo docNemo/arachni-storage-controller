@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.handler;
+package ru.mai.arachni.storagecontroller.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import ru.mai.arachni.controllerstorage.exception.ArachniControllerStorageError;
-import ru.mai.arachni.controllerstorage.exception.ArachniControllerStorageException;
-import ru.mai.arachni.controllerstorage.exception.ArachniControllerStorageRepresentation;
+import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerError;
+import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerException;
+import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerRepresentation;
 
 import java.util.stream.Collectors;
 
@@ -23,35 +23,35 @@ public class GlobalRuntimeExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation> handleRuntimeException(
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation> handleRuntimeException(
             final RuntimeException e
     ) {
         LOGGER.error("Handling: ", e);
 
         return ResponseEntity
-                .status(ArachniControllerStorageError.UNKNOWN_ERROR.getStatusCode())
+                .status(ArachniStorageControllerError.UNKNOWN_ERROR.getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
-                                ArachniControllerStorageError.UNKNOWN_ERROR.name(),
-                                ArachniControllerStorageError.UNKNOWN_ERROR.getErrorMessage()
+                        new ArachniStorageControllerRepresentation(
+                                ArachniStorageControllerError.UNKNOWN_ERROR.name(),
+                                ArachniStorageControllerError.UNKNOWN_ERROR.getErrorMessage()
                         )
                 );
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation>
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation>
     handleMethodArgumentTypeMismatchException(
             final MethodArgumentTypeMismatchException e
     ) {
         LOGGER.error("Handling: ", e);
 
         return ResponseEntity
-                .status(ArachniControllerStorageError.INVALID_PARAMETER.getStatusCode())
+                .status(ArachniStorageControllerError.INVALID_PARAMETER.getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
-                                ArachniControllerStorageError.INVALID_PARAMETER.name(),
+                        new ArachniStorageControllerRepresentation(
+                                ArachniStorageControllerError.INVALID_PARAMETER.name(),
                                 "%s: %s".formatted(
-                                        ArachniControllerStorageError.INVALID_PARAMETER.getErrorMessage(),
+                                        ArachniStorageControllerError.INVALID_PARAMETER.getErrorMessage(),
                                         e.getMessage()
                                 )
                         )
@@ -59,7 +59,7 @@ public class GlobalRuntimeExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation> handleMethodArgumentNotValidException(
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation> handleMethodArgumentNotValidException(
             final MethodArgumentNotValidException e
     ) {
         LOGGER.error("Handling: ", e);
@@ -71,12 +71,12 @@ public class GlobalRuntimeExceptionHandler {
                 .collect(Collectors.joining(", "));
 
         return ResponseEntity
-                .status(ArachniControllerStorageError.INVALID_JSON_PARAMETERS.getStatusCode())
+                .status(ArachniStorageControllerError.INVALID_JSON_PARAMETERS.getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
-                                ArachniControllerStorageError.INVALID_JSON_PARAMETERS.name(),
+                        new ArachniStorageControllerRepresentation(
+                                ArachniStorageControllerError.INVALID_JSON_PARAMETERS.name(),
                                 "%s: %s".formatted(
-                                        ArachniControllerStorageError.INVALID_JSON_PARAMETERS.getErrorMessage(),
+                                        ArachniStorageControllerError.INVALID_JSON_PARAMETERS.getErrorMessage(),
                                         issues
                                 )
                         )
@@ -84,18 +84,18 @@ public class GlobalRuntimeExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation> handleHttpMessageNotReadableException(
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation> handleHttpMessageNotReadableException(
             final HttpMessageNotReadableException e
     ) {
         LOGGER.error("Handling: ", e);
 
         return ResponseEntity
-                .status(ArachniControllerStorageError.INVALID_HTTP_MESSAGE.getStatusCode())
+                .status(ArachniStorageControllerError.INVALID_HTTP_MESSAGE.getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
-                                ArachniControllerStorageError.INVALID_HTTP_MESSAGE.name(),
+                        new ArachniStorageControllerRepresentation(
+                                ArachniStorageControllerError.INVALID_HTTP_MESSAGE.name(),
                                 "%s: %s".formatted(
-                                        ArachniControllerStorageError.INVALID_HTTP_MESSAGE.getErrorMessage(),
+                                        ArachniStorageControllerError.INVALID_HTTP_MESSAGE.getErrorMessage(),
                                         e.getMessage()
                                 )
                         )
@@ -103,34 +103,34 @@ public class GlobalRuntimeExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation> handleIllegalArgumentException(
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation> handleIllegalArgumentException(
             final IllegalArgumentException e
     ) {
         LOGGER.error("Handling: ", e);
 
         return ResponseEntity
-                .status(ArachniControllerStorageError.INVALID_PAGINATION_PARAMETER.getStatusCode())
+                .status(ArachniStorageControllerError.INVALID_PAGINATION_PARAMETER.getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
-                                ArachniControllerStorageError.INVALID_PAGINATION_PARAMETER.name(),
+                        new ArachniStorageControllerRepresentation(
+                                ArachniStorageControllerError.INVALID_PAGINATION_PARAMETER.name(),
                                 "%s: %s".formatted(
-                                        ArachniControllerStorageError.INVALID_PAGINATION_PARAMETER.getErrorMessage(),
+                                        ArachniStorageControllerError.INVALID_PAGINATION_PARAMETER.getErrorMessage(),
                                         e.getMessage()
                                 )
                         )
                 );
     }
 
-    @ExceptionHandler(ArachniControllerStorageException.class)
-    public @ResponseBody ResponseEntity<ArachniControllerStorageRepresentation> handleArachniControllerStorageException(
-            final ArachniControllerStorageException e
+    @ExceptionHandler(ArachniStorageControllerException.class)
+    public @ResponseBody ResponseEntity<ArachniStorageControllerRepresentation> handleArachniStorageControllerException(
+            final ArachniStorageControllerException e
     ) {
         LOGGER.error("Handling: ", e);
 
         return ResponseEntity
                 .status(e.getError().getStatusCode())
                 .body(
-                        new ArachniControllerStorageRepresentation(
+                        new ArachniStorageControllerRepresentation(
                                 e.getError().name(),
                                 e.getError().getErrorMessage()
                         )

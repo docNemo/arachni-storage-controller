@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.controller;
+package ru.mai.arachni.storagecontroller.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.mai.arachni.controllerstorage.dto.request.UploadRequest;
-import ru.mai.arachni.controllerstorage.dto.response.UploadResponse;
-import ru.mai.arachni.controllerstorage.service.MinioStorageService;
+import ru.mai.arachni.storagecontroller.dto.request.UploadRequest;
+import ru.mai.arachni.storagecontroller.dto.response.UploadResponse;
+import ru.mai.arachni.storagecontroller.service.MinioStorageService;
 
 @Slf4j
 @RestController

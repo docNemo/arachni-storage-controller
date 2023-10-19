@@ -1,4 +1,4 @@
-package ru.mai.arachni.controllerstorage.exception;
+package ru.mai.arachni.storagecontroller.exception;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor
 @Getter
-public class ArachniControllerStorageException extends RuntimeException {
-    private final ArachniControllerStorageError error;
+public class ArachniStorageControllerException extends RuntimeException {
+    private final ArachniStorageControllerError error;
     private final String extraInformation;
 
     @Override

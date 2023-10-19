@@ -10,14 +10,14 @@
     </parent>
 
     <groupId>ru.mai.arachni</groupId>
-    <artifactId>arachni-controller-storage</artifactId>
+    <artifactId>arachni-storage-controller</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
 
     <name>arachni-controller-storage</name>
 
     <modules>
-        <module>arachni-controller-storage-api</module>
+        <module>arachni-storage-controller-api</module>
     </modules>
 
     <properties>
