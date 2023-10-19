@@ -71,7 +71,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <finalName>${parent.artifactId}</finalName>
-                    <mainClass>ru.mai.arachni.controllerstorage.ArachniStorageControllerApplication</mainClass>
+                    <mainClass>ru.mai.arachni.storagecontroller.ArachniStorageControllerApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
