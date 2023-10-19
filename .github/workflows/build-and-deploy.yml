@@ -11,7 +11,7 @@ env:
   DOCKERFILE: "Dockerfile"
   IMAGE_NAME: ${{ github.repository }}
 
-  APPLICATION_NAME: "arachni-object-storage"
+  APPLICATION_NAME: "arachni-storage-controller"
   OS_PROJECT: "arachni"
   APP_TEMPLATE: "DeploymentConfig.yml"
   HOST_PORT: "8080"
