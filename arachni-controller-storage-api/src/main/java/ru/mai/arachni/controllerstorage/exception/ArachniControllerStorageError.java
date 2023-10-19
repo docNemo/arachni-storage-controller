@@ -34,6 +34,10 @@ public enum ArachniControllerStorageError {
     DOWNLOAD_FAILED(
             "Не удалось скачать объект",
             HttpStatus.BAD_REQUEST
+    ),
+    DELETE_FAILED(
+            "Не удалось удалить объект",
+            HttpStatus.BAD_REQUEST
     );
 
     private final String errorMessage;

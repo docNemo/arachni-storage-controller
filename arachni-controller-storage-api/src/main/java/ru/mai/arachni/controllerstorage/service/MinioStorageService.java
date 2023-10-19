@@ -4,6 +4,7 @@ import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,6 +73,25 @@ public class MinioStorageService implements StorageService {
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
             throw new ArachniControllerStorageException(
                     ArachniControllerStorageError.DOWNLOAD_FAILED,
+                    e.getMessage()
+            );
+        }
+    }
+
+    public void deleteObject(
+            String objectName
+    ) {
+        try {
+            minioClient.removeObject(
+                    RemoveObjectArgs
+                            .builder()
+                            .bucket(bucket)
+                            .object(objectName)
+                            .build()
+            );
+        } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new ArachniControllerStorageException(
+                    ArachniControllerStorageError.DELETE_FAILED,
                     e.getMessage()
             );
         }

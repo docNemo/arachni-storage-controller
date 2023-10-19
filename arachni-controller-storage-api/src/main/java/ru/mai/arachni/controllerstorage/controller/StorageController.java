@@ -2,10 +2,12 @@ package ru.mai.arachni.controllerstorage.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mai.arachni.controllerstorage.dto.request.UploadRequest;
 import ru.mai.arachni.controllerstorage.dto.response.UploadResponse;
@@ -14,10 +16,11 @@ import ru.mai.arachni.controllerstorage.service.MinioStorageService;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/objects")
 public class StorageController {
     private final MinioStorageService minioStorageService;
 
-    @PostMapping("/upload")
+    @PostMapping
     public UploadResponse uploadObject(
             @RequestBody UploadRequest uploadRequest
     ) {
@@ -27,9 +30,14 @@ public class StorageController {
         );
     }
 
-    @GetMapping("/download/{objectName}")
+    @GetMapping("/{objectName}")
     public String downloadObject(@PathVariable String objectName) {
         return minioStorageService.downloadObject(objectName);
+    }
+
+    @DeleteMapping("/{objectName}")
+    public void deleteObject(@PathVariable String objectName) {
+        minioStorageService.deleteObject(objectName);
     }
 
 }
