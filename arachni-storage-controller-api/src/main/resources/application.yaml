@@ -16,6 +16,6 @@ springdoc:
 
 storage:
   minio:
-    host: http://minio-lab-1.neo:9000
+    host: http://minio-lab-1.neo
     bucket: arachni
     region: ru-moscow
