@@ -14,6 +14,7 @@ env:
   APPLICATION_NAME: "arachni-storage-controller"
   OS_PROJECT: "arachni"
   APP_TEMPLATE: "DeploymentConfig.yml"
+  ROUTE_TEMPLATE: "Route.yml"
   HOST_PORT: "8080"
   OS_ROUTE: "apps.os-lab-3.neo"
 
@@ -126,13 +127,19 @@ jobs:
           oc project ${{ env.OS_PROJECT }}
           oc whoami
 
-      - name: Deploy to OS
+      - name: Deploy App to OS
         run: |
           oc process -f config/openshift/${{ env.APP_TEMPLATE }} \
           -p APPLICATION_NAME=${{ env.APPLICATION_NAME }}-${{ steps.meta.outputs.version }} \
           -p HOST_PORT=${{ env.HOST_PORT }} \
           -p IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} \
           -p IMAGE_SHA=${{ steps.build-and-push.outputs.sha }} \
+          -p OS_ROUTE=${{ env.OS_ROUTE }} | oc apply -f -
+
+      - name: Deploy App to OS
+        run: |
+          oc process -f config/openshift/${{ env.ROUTE_TEMPLATE }} \
+          -p APPLICATION_NAME=${{ env.APPLICATION_NAME }}-${{ steps.meta.outputs.version }} \
           -p OS_ROUTE=${{ env.OS_ROUTE }} | oc apply -f -
 
       - name: Delete completed deploy pods

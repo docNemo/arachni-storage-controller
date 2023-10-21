@@ -139,6 +139,3 @@ parameters:
   - name: INGRESS_HOST
     required: true
     value: "arachni-back"
-  - name: OS_ROUTE
-    required: true
-    value: "apps.os-lab-3.neo"
