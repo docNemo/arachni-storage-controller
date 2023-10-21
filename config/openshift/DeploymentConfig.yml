@@ -105,14 +105,14 @@ objects:
       gateways:
         - ${INGRESS_APP}-gw
       http:
-        - match:
-            uri:
-              prefix: "/api/objects"
-        - route:
-            - destination:
-                host: ${APPLICATION_NAME}
-                port:
-                  number: ${{HOST_PORT}}
+        match:
+          uri:
+            prefix: "/api/objects"
+        route:
+          - destination:
+              host: ${APPLICATION_NAME}
+              port:
+                number: ${{HOST_PORT}}
 
 parameters:
   - name: APPLICATION_NAME
