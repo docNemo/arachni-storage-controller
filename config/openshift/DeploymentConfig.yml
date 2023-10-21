@@ -104,6 +104,10 @@ objects:
         - ${INGRESS_HOST}.${OS_ROUTE}
       gateways:
         - ${INGRESS_APP}-gw
+      http:
+        - match:
+            uri:
+              prefix: "/api/objects"
         - route:
             - destination:
                 host: ${APPLICATION_NAME}
