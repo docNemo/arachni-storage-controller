@@ -136,7 +136,7 @@ jobs:
           -p IMAGE_SHA=${{ steps.build-and-push.outputs.sha }} \
           -p OS_ROUTE=${{ env.OS_ROUTE }} | oc apply -f -
 
-      - name: Deploy App to OS
+      - name: Deploy Route to OS
         run: |
           oc process -f config/openshift/${{ env.ROUTE_TEMPLATE }} \
           -p APPLICATION_NAME=${{ env.APPLICATION_NAME }}-${{ steps.meta.outputs.version }} \
