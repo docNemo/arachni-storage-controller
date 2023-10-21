@@ -2,7 +2,6 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: ${APPLICATION_NAME}-template
-  app: ${APPLICATION_NAME}
 labels:
   template: ${APPLICATION_NAME}-template
   app: ${APPLICATION_NAME}
@@ -92,20 +91,24 @@ objects:
     status:
       loadBalancer: { }
 
-  - kind: Route
-    apiVersion: route.openshift.io/v1
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
     metadata:
-      name: ${APPLICATION_NAME}
+      name: ${APPLICATION_NAME}-vs
       labels:
         app: ${APPLICATION_NAME}
     spec:
-      host: ${APPLICATION_NAME}.${OS_ROUTE}
-      to:
-        kind: Service
-        name: ${APPLICATION_NAME}
-        weight: 100
-      port:
-        targetPort: ${{HOST_PORT}}
+      exportTo:
+        - .
+      hosts:
+        - ${INGRESS_HOST}.${OS_ROUTE}
+      gateways:
+        - ${INGRESS_APP}-gw
+        - route:
+            - destination:
+                host: ${APPLICATION_NAME}
+                port:
+                  number: ${{HOST_PORT}}
 
 parameters:
   - name: APPLICATION_NAME
@@ -130,3 +133,12 @@ parameters:
   - name: REQUESTS_MEMORY
     required: true
     value: '250Mi'
+  - name: INGRESS_APP
+    required: true
+    value: 'ingress-arachni'
+  - name: INGRESS_HOST
+    required: true
+    value: "arachni-back"
+  - name: OS_ROUTE
+    required: true
+    value: "apps.os-lab-3.neo"

@@ -1,0 +1,46 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+labels:
+  template: ${APPLICATION_NAME}-template
+  app: ${APPLICATION_NAME}
+objects:
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      host: ${APPLICATION_NAME}.${OS_ROUTE}
+      to:
+        kind: Service
+        name: ${APPLICATION_NAME}
+        weight: 100
+      port:
+        targetPort: ${{HOST_PORT}}
+
+parameters:
+  - name: APPLICATION_NAME
+    required: true
+  - name: IMAGE
+    required: true
+  - name: IMAGE_SHA
+    required: true
+  - name: HOST_PORT
+    required: true
+  - name: OS_ROUTE
+    required: true
+  - name: LIMITS_CPU
+    required: true
+    value: '1'
+  - name: LIMITS_MEMORY
+    required: true
+    value: '250Mi'
+  - name: REQUESTS_CPU
+    required: true
+    value: '1'
+  - name: REQUESTS_MEMORY
+    required: true
+    value: '250Mi'
