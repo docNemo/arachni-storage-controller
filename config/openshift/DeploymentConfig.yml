@@ -106,8 +106,8 @@ objects:
         - ${INGRESS_APP}-gw
       http:
         - match:
-            uri:
-              prefix: "/api/objects"
+            - uri:
+                prefix: "/api/objects"
           route:
             - destination:
                 host: ${APPLICATION_NAME}
