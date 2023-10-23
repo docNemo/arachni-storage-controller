@@ -114,9 +114,3 @@ parameters:
   - name: REQUESTS_MEMORY
     required: true
     value: '250Mi'
-  - name: INGRESS_APP
-    required: true
-    value: 'ingress-arachni'
-  - name: INGRESS_HOST
-    required: true
-    value: "arachni-back"
