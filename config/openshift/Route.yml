@@ -37,9 +37,9 @@ objects:
       http:
         - match:
             - uri:
-                prefix: "/api/${APPLICATION_NAME}"
+                prefix: "/api/${APPLICATION_NAME}/"
           rewrite:
-            uri: "/api"
+            uri: "/api/"
           route:
             - destination:
                 host: ${APPLICATION_NAME}
