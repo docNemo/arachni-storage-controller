@@ -21,8 +21,35 @@ objects:
       port:
         targetPort: ${{HOST_PORT}}
 
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
+    metadata:
+      name: ${APPLICATION_NAME}-vs
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      exportTo:
+        - .
+      hosts:
+        - ${INGRESS_HOST}.${OS_ROUTE}
+      gateways:
+        - ${INGRESS_APP}-gw
+      http:
+        - match:
+            - uri:
+                prefix: "/api/objects"
+          route:
+            - destination:
+                host: ${APPLICATION_NAME}
+                port:
+                  number: ${{HOST_PORT}}
+
 parameters:
   - name: APPLICATION_NAME
+    required: true
+  - name: INGRESS_APP
+    required: true
+  - name: INGRESS_HOST
     required: true
   - name: OS_ROUTE
     required: true

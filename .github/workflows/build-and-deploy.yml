@@ -16,6 +16,8 @@ env:
   APP_TEMPLATE: "DeploymentConfig.yml"
   ROUTE_TEMPLATE: "Route.yml"
   HOST_PORT: "8080"
+  INGRESS_APP: "ingress-arachni"
+  INGRESS_HOST: "arachni-back"
   OS_ROUTE: "apps.os-lab-3.neo"
 
 jobs:
@@ -140,6 +142,8 @@ jobs:
         run: |
           oc process -f config/openshift/${{ env.ROUTE_TEMPLATE }} \
           -p APPLICATION_NAME=${{ env.APPLICATION_NAME }}-${{ steps.meta.outputs.version }} \
+          -p INGRESS_APP=${{ env.INGRESS_APP }} \
+          -p INGRESS_HOST=${{ env.INGRESS_HOST }} \
           -p OS_ROUTE=${{ env.OS_ROUTE }} | oc apply -f -
 
       - name: Delete completed deploy pods
