@@ -53,5 +53,7 @@ parameters:
     required: true
   - name: INGRESS_HOST
     required: true
+  - name: HOST_PORT
+    required: true
   - name: OS_ROUTE
     required: true
