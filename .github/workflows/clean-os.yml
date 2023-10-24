@@ -6,7 +6,7 @@ on:
     types: [ closed ]
 
 env:
-  APPLICATION_NAME: "arachni-articles"
+  APPLICATION_NAME: ${{ github.event.repository.name }}
   OS_PROJECT: "arachni-back-dev"
 
 jobs:
