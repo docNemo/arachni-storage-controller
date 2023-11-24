@@ -8,6 +8,7 @@ import io.minio.RemoveObjectArgs;
 import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.hc.client5.http.utils.Base64;
 import org.springframework.http.MediaType;
 import ru.mai.arachni.storagecontroller.dto.response.UploadResponse;
 import ru.mai.arachni.storagecontroller.exception.ArachniStorageControllerError;
@@ -72,7 +73,7 @@ public class MinioStorageService implements StorageService {
                                 .build()
                 )
         ) {
-            return new String(stream.readAllBytes());
+            return Base64.encodeBase64String(stream.readAllBytes());
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
             throw new ArachniStorageControllerException(
                     ArachniStorageControllerError.DOWNLOAD_FAILED,
