@@ -6,9 +6,11 @@ public interface StorageService {
 
     UploadResponse uploadObject(
             String objectName,
-            String text
+            String text,
+            String bucket
     );
     String downloadObject(
-            String objectName
+            String objectName,
+            String bucket
     );
 }

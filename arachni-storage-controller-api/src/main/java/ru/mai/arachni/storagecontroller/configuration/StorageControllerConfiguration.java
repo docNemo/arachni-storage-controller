@@ -24,12 +24,10 @@ public class StorageControllerConfiguration {
 
     @Bean
     public MinioStorageService minioStorageService(
-            MinioClient minioClient,
-            @Value("${storage.minio.bucket}") String bucket
+            MinioClient minioClient
     ) {
         return new MinioStorageService(
-                minioClient,
-                bucket
+                minioClient
         );
     }
 }

@@ -24,11 +24,12 @@ import java.security.NoSuchAlgorithmException;
 @RequiredArgsConstructor
 public class MinioStorageService implements StorageService {
     private final MinioClient minioClient;
-    private final String bucket;
+//    private final String bucket;
 
     public UploadResponse uploadObject(
             String objectName,
-            String text
+            String text,
+            String bucket
     ) {
 
         try (InputStream inputStream = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8))) {
@@ -59,8 +60,10 @@ public class MinioStorageService implements StorageService {
     }
 
     public String downloadObject(
-            String objectName
+            String objectName,
+            String bucket
     ) {
+        LOGGER.info("bucket: {}", bucket);
         try (
                 InputStream stream = minioClient.getObject(
                         GetObjectArgs.builder()
@@ -79,7 +82,8 @@ public class MinioStorageService implements StorageService {
     }
 
     public void deleteObject(
-            String objectName
+            String objectName,
+            String bucket
     ) {
         try {
             minioClient.removeObject(

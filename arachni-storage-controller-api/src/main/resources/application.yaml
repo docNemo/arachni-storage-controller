@@ -17,5 +17,7 @@ springdoc:
 storage:
   minio:
     host: http://minio-lab-1.neo
-    bucket: arachni
+    bucket:
+      articles: arachni
+      classifier: classifier
     region: ru-moscow
