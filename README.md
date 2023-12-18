@@ -1,1 +1,1 @@
-# arachni-controller-storage
+# arachni-storage-controller
